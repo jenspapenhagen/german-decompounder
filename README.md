@@ -53,9 +53,9 @@ following definition to your Solr schema:
   <analyzer> 
     <tokenizer class="solr.StandardTokenizerFactory"/>
     <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.GermanNormalizationFilterFactory"/>
     <filter class="solr.HyphenationCompoundWordTokenFilterFactory" hyphenator="lang/de_DR.xml"
       dictionary="lang/dictionary-de.txt" onlyLongestMatch="true" minSubwordSize="4"/>
-    <filter class="solr.GermanNormalizationFilterFactory"/>
     <filter class="solr.GermanLightStemFilterFactory"/>
   </analyzer>
 </fieldType>
@@ -92,8 +92,8 @@ the following settings to your index. After that you can use the
            "tokenizer": "standard",
            "filter": [
               "lowercase",
-              "german_decompounder",
               "german_normalization",
+              "german_decompounder",
               "german_stemmer"
            ]
         }
