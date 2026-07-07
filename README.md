@@ -31,7 +31,7 @@ For decompounding German words, the recommended approach is the following:
   preferring exact matches in your search.
 
 The dictionary file [dictionary-de.txt](dictionary-de.txt) is developed here and was
-created based on the fabulous data by Björn Jacke: https://www.j3e.de/ispell/igerman98/
+created based on the fabulous data by BjÃ¶rn Jacke: https://www.j3e.de/ispell/igerman98/
 
 I used his large and high quality dictionary to make a dictionary file only containing
 the parts of German compounds. The dictionary therefore is not large, it contains
@@ -112,12 +112,12 @@ Custom Analyzer for use with the Apache Lucene API.
 Analyzer analyzer = CustomAnalyzer.builder(Paths.get("/path/to/german-decompounder"))
        .withTokenizer(StandardTokenizerFactory.NAME)
        .addTokenFilter(LowerCaseFilterFactory.NAME)
+       .addTokenFilter(GermanNormalizationFilterFactory.NAME)
        .addTokenFilter(HyphenationCompoundWordTokenFilterFactory.NAME,
                        "hyphenator", "de_DR.xml",
                        "dictionary", "dictionary-de.txt",
                        "onlyLongestMatch", "true",
-                       "minSubwordSize", "4")
-       .addTokenFilter(GermanNormalizationFilterFactory.NAME)
+                       "minSubwordSize", "4")       
        .addTokenFilter(GermanLightStemFilterFactory.NAME)
        .build();
 ```
